@@ -1,11 +1,11 @@
 package ru.perminov.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import ru.perminov.dto.ParamTaskDto;
 import ru.perminov.dto.TaskDto;
 import ru.perminov.dto.TaskDtoOut;
 import ru.perminov.exceptions.errors.EntityNotFoundException;
@@ -13,9 +13,8 @@ import ru.perminov.mapper.TaskMapper;
 import ru.perminov.model.Task;
 import ru.perminov.repository.TaskRepository;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -66,22 +65,25 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDtoOut> getAll(Set<Long> listIds, Integer from, Integer size) {
+    public List<TaskDtoOut> getAll(ParamTaskDto dto) {
         Sort sortById = Sort.by(Sort.Direction.ASC, "id");
-        int startPage = from > 0 ? (from / size) : 0;
-        Pageable pageable = PageRequest.of(startPage, size, sortById);
-        Page<Task> users;
+        int startPage = dto.getFrom() > 0 ? (dto.getFrom() / dto.getSize()) : 0;
+        Pageable pageable = PageRequest.of(startPage, dto.getSize(), sortById);
 
-        if (listIds != null) {
-            if (listIds.isEmpty()) {
-                return Collections.emptyList();
-            }
-            users = taskRepository.findAllByIdsPageable(listIds, pageable);
-        } else {
-            users = taskRepository.findAll(pageable);
+
+        if (dto.getListOwner() == null) {
+            dto.setListOwner(new HashSet<>());
         }
 
-        return taskRepository.findAll().stream().map(TaskMapper::toDto).toList();
+        if (dto.getListExecutor() == null) {
+            dto.setListExecutor(new HashSet<>());
+        }
+
+
+        return taskRepository.findAllByOwnerIdsPageable(dto.getListOwner(), dto.getListExecutor(), pageable)
+                .stream()
+                .map(TaskMapper::toDto)
+                .toList();
     }
 
     @Override

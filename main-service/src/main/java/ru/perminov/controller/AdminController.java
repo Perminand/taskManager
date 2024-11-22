@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.perminov.service.TaskService;
+import ru.perminov.dto.ParamTaskDto;
 import ru.perminov.dto.TaskDto;
 import ru.perminov.dto.TaskDtoOut;
+import ru.perminov.service.TaskService;
 
 import java.util.List;
 import java.util.Set;
@@ -31,17 +32,18 @@ public class AdminController {
     @PatchMapping("/tasks/{id}")
     @ResponseStatus(HttpStatus.OK)
     public TaskDtoOut update(@RequestBody @Valid TaskDto dto, @PathVariable Long id) {
-        log.info("PATCH запрос на изменение TASK: {}");
+        log.info("PATCH запрос на изменение TASK: {}", id);
         return taskService.update(dto, id);
     }
 
     @GetMapping("/tasks")
     @ResponseStatus(HttpStatus.OK)
-    public List<TaskDtoOut> getAll(@RequestParam(name = "ids", required = false) Set<Long> listIds,
+    public List<TaskDtoOut> getAll(@RequestParam(name = "owner", required = false) Set<Long> listOwner,
+                                   @RequestParam(name = "executor", required = false) Set<Long> listExecutor,
                                    @RequestParam(name = "from", required = false, defaultValue = "0") @Min(0) Integer from,
                                    @RequestParam(name = "size", required = false, defaultValue = "10") @Min(0) Integer size) {
-        log.info("GET запрос на получение всех TASK");
-        return taskService.getAll(listIds, from, size);
+        log.info("GET запрос на получение списка TASK");
+        return taskService.getAll(new ParamTaskDto(listOwner, listExecutor, from, size));
     }
 
     @GetMapping("/tasks/{id}")
