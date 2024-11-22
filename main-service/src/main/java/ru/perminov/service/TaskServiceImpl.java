@@ -60,10 +60,6 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
-    private Task getTask(Long id) {
-        return taskRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Нет TASK с id: " + id));
-    }
-
     @Override
     public List<TaskDtoOut> getAll(ParamTaskDto dto) {
         Sort sortById = Sort.by(Sort.Direction.ASC, "id");
@@ -94,5 +90,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteById(Long id) {
         taskRepository.deleteById(id);
+    }
+
+    private Task getTask(Long id) {
+        return taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Нет TASK с id: " + id));
     }
 }
