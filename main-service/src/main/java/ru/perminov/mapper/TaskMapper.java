@@ -1,7 +1,7 @@
 package ru.perminov.mapper;
 
-import ru.perminov.dto.TaskDto;
-import ru.perminov.dto.TaskDtoOut;
+import ru.perminov.dto.task.TaskDto;
+import ru.perminov.dto.task.TaskDtoOut;
 import ru.perminov.model.Task;
 
 public class TaskMapper {

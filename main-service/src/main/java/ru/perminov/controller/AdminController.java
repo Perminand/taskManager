@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.perminov.dto.ParamTaskDto;
-import ru.perminov.dto.TaskDto;
-import ru.perminov.dto.TaskDtoOut;
-import ru.perminov.service.TaskService;
+import ru.perminov.dto.task.ParamTaskDto;
+import ru.perminov.dto.task.TaskDto;
+import ru.perminov.dto.task.TaskDtoOut;
+import ru.perminov.service.task.TaskService;
 
 import java.util.List;
 import java.util.Set;

@@ -1,10 +1,10 @@
-package ru.perminov.service;
+package ru.perminov.service.task;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
-import ru.perminov.dto.ParamTaskDto;
-import ru.perminov.dto.TaskDto;
-import ru.perminov.dto.TaskDtoOut;
+import ru.perminov.dto.task.ParamTaskDto;
+import ru.perminov.dto.task.TaskDto;
+import ru.perminov.dto.task.TaskDtoOut;
 
 import java.util.List;
 

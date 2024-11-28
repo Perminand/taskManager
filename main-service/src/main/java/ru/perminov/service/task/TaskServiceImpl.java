@@ -1,13 +1,13 @@
-package ru.perminov.service;
+package ru.perminov.service.task;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.perminov.dto.ParamTaskDto;
-import ru.perminov.dto.TaskDto;
-import ru.perminov.dto.TaskDtoOut;
+import ru.perminov.dto.task.ParamTaskDto;
+import ru.perminov.dto.task.TaskDto;
+import ru.perminov.dto.task.TaskDtoOut;
 import ru.perminov.exceptions.errors.EntityNotFoundException;
 import ru.perminov.mapper.TaskMapper;
 import ru.perminov.model.Task;

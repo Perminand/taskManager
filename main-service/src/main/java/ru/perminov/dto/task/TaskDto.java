@@ -1,4 +1,4 @@
-package ru.perminov.dto;
+package ru.perminov.dto.task;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

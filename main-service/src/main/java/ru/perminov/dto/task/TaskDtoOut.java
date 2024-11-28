@@ -1,4 +1,4 @@
-package ru.perminov.dto;
+package ru.perminov.dto.task;
 
 import lombok.Builder;
 import lombok.Data;

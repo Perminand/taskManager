@@ -1,6 +1,5 @@
 server:
   port: "8082"
-
 spring:
   output:
     ansi:
@@ -15,6 +14,6 @@ spring:
     show-sql: true
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5453/task
+    url: jdbc:postgresql://localhost:5433/task
     username: task
     password: task

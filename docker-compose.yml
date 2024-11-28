@@ -1,38 +1,9 @@
 services:
-#  keycloak:
-#    image: bitnami/keycloak:21.1.2
-#    container_name: keycloak
-#    environment:
-#      DB_VENDOR: POSTGRES
-#      DB_ADDR: postgres
-#      DB_DATABASE: keycloak_db
-#      DB_USER: ${POSTGRES_USER:-postgres}
-#      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-#      KEYCLOAK_USER: admin
-#      KEYCLOAK_PASSWORD: admin_password
-#    ports:
-#      - "8484:8080"
-#    depends_on:
-#      - user-db
-#    links:
-#      - "user-db:postgres"
-#
-#  user-db:
-#    container_name: user-db
-#    image: library/postgres
-#    environment:
-#      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-#      POSTGRES_DB: keycloak_db
-#    ports:
-#      - "5454:5432"
-#    restart: unless-stopped
-
   task-db:
     image: postgres:16.1
     container_name: task-db
     ports:
-      - "5453:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_DB=task
       - POSTGRES_USER=task
